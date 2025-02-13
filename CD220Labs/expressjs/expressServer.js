@@ -1,4 +1,4 @@
- // Import the Express.js library
+// Import the Express.js library
 const express = require('express');
 
 // Create an instance of an Express application
@@ -26,6 +26,17 @@ app.post("/login/:name", (req, res) => {
 // Define a dynamic route to greet users by name
 app.get("/:name", (req, res) => {
     res.send("Hello " + req.params.name);
+});
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+app.get("/fetchMonth/:num", (req, res) => {
+    let num = parseInt(req.params.num);
+    if (num < 1 || num > 12) {
+        res.send(`${num} - not a valid month number`);
+    } else {
+        res.send(months[num - 1]);
+    }
 });
 
 // Start the server and listen on port 3333
